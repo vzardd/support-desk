@@ -1,7 +1,10 @@
-
+import Home from "./landing-page/ui/Home";
+import { BrowserRouter as Router } from "react-router-dom";
 function App() {
   return (
-    <h1>Hello world</h1>
+    <Router>
+      <Home/>
+    </Router>
   );
 }
 
