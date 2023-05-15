@@ -1,5 +1,6 @@
 import { useState } from "react";
 import upArrow from "../../../assets/upArrow.png";
+import Form from "../../../components/Form";
 
 export default function Faq () {
 
@@ -7,7 +8,7 @@ export default function Faq () {
         {
             question: "Q: How can I contact customer support?",
             answer: "A: You can contact customer support via email, or by raising a ticket.",
-            type: "open"
+            type: "close"
         },
         {
             question: "Q: What are your business hours?",
@@ -57,7 +58,7 @@ export default function Faq () {
     return (
         <div className="section faq" id="faq">
             <div className="questions">
-                <h1 className="black-title faq-title">FAQ</h1>
+                <h1 className="white-title faq-title">FAQ</h1>
                 {
                     questions.map(
                         (obj,i) => (
@@ -66,8 +67,9 @@ export default function Faq () {
                     )
                 }
             </div>
-            <div className="feedback-form">
-
+            <div className="feedback-section">
+                <h1 className="white-title feedback-title">Feedback</h1>
+                <Form/>
             </div>
         </div>
     );

@@ -1,5 +1,5 @@
 import customerSupportGirl from "../../../assets/customerSupportGirl.png";
-import OutlinedButton from "../../../components/Buttons";
+import {OutlinedButton} from "../../../components/Buttons";
 
 export default function RaiseTicketSection() {
     return (
@@ -12,7 +12,7 @@ export default function RaiseTicketSection() {
                     Raise a ticket <span className="arrow">↗</span>
                 </em>
             }/>
-            <img src={customerSupportGirl} className="support-girl"></img>
+            <img src={customerSupportGirl} className="support-girl" alt="customer support girl"></img>
         </div>
     );
 }

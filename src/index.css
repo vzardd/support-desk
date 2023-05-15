@@ -3,6 +3,13 @@
   scroll-behavior: smooth;
 }
 
+:root{
+  --primary: #4527a0;
+  --secondary: #5e35b1;
+  --soft-white: #ede7f6;
+  --light-grey: #f5f5f5;
+}
+
 @font-face {
   font-family: Monsterrat;
   src: url('/src/assets/fonts/monsterrat.ttf');
