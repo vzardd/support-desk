@@ -69,7 +69,7 @@ export default function Faq () {
             </div>
             <div className="feedback-section">
                 <h1 className="white-title feedback-title">Feedback</h1>
-                <Form/>
+                <Form width="min(80%,80vw)"/>
             </div>
         </div>
     );

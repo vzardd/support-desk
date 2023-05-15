@@ -39,6 +39,8 @@
     justify-content: flex-end;
     align-items: center;
     z-index: 2;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
 }
 .header-link{
     text-decoration: none;
@@ -47,7 +49,7 @@
     cursor: pointer;
     font-family: Monsterrat;
     position: relative;
-    font-size: 16px;
+    font-size: min(5vw,16px);
 }
 .header-link::after{
     content: "";
@@ -67,15 +69,16 @@
 
 .raise-ticket{
     background: linear-gradient(to bottom right, var(--primary) 50%, var(--secondary));
+    position: relative;
 }
 
 .main {
-    font-size: 55px;
+    font-size: clamp(7vw,40px,45px);
     padding: 10px;
     position: relative;
     top: 20%;
     left: 2%;
-    width: clamp(350px,400px,30vw);
+    width: 90vw;
 }
 .sub{
     font-size: 25px;
@@ -83,7 +86,7 @@
     position: relative;
     top: 22%;
     left: 2%;
-    width: clamp(350px,400px,30vw);
+    width: 80vw;
 }
 .tagline{
     font-size: 15px;
@@ -91,10 +94,10 @@
     position: relative;
     top: 20%;
     left: 3%;
-    width: clamp(350px,400px,30vw);
+    width: 90vw;
 }
 .support-girl{
-    height: 90vh;
+    height: min(90vw,90vh);
     position: absolute;
     right: 0;
     bottom: 0;
@@ -116,11 +119,12 @@
 }
 
 .request-title {
-    font-size: 55px;
+    font-size: clamp(5vw, 45px, 45px);
     padding: 10px;
     position: absolute;
     top: 20%;
     right: 2%;
+    text-align: end;
 }
 
 .request-tagline{
@@ -141,7 +145,7 @@
 }
 
 .request-feature-image{
-    height: 90vh;
+    height: min(90vw,90vh);
     position: absolute;
     left: 0;
     top: 0;
@@ -159,7 +163,10 @@
 /* FAQ */
 
 .faq{
+    min-height: 100vh;
+    height: fit-content;
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-evenly;
     align-items: center;
     background: linear-gradient(to bottom right, var(--primary) 10%, var(--secondary));
@@ -167,12 +174,14 @@
 
 .questions, .feedback-section{
     height: 100%;
-    width: 100px;
+    width: min(80vw,300px);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     flex-grow:1;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .qn-container{
@@ -248,8 +257,32 @@
 }
 
 .footer-text{
-    font-size: 15px;
+    font-size: min(2vw,15px);
     font-family: 'Courier New', Courier, monospace;
     color: white;
     padding: 15px;
+}
+
+@media screen and (max-width:450px) {
+    .request-title{
+        top:40%;
+    }
+    .request-tagline{
+        font-size: 15px;
+        padding: 5px;
+        position: absolute;
+        top: 58%;
+        right: 3%;
+        width: 90vw;
+        text-align: end;
+    }
+    
+    .request-button{
+        position: absolute;
+        top: 66%;
+        right: 4%;
+        cursor: pointer;
+        box-shadow: 0px 0px 0px gray;
+        transition: box-shadow 0.5s ease-in-out;
+    }
 }
