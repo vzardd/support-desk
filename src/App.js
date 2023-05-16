@@ -1,9 +1,13 @@
 import Home from "./landing-page/ui/Home";
-import { BrowserRouter as Router } from "react-router-dom";
+import { Route, BrowserRouter as Router , Routes} from "react-router-dom";
+import FormPage from "./form-page/ui/FormPage";
 function App() {
   return (
     <Router>
-      <Home/>
+      <Routes>
+        <Route path="/" element={<Home/>}/>
+        <Route path="/login" element={<FormPage/>}/>
+      </Routes>
     </Router>
   );
 }
