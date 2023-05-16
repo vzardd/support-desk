@@ -11,7 +11,7 @@
 .title{
     color: white;
     font-family: Monsterrat;
-    font-size: 55px;
+    font-size: min(10vw,55px);
 }
 
 .label{
@@ -20,15 +20,16 @@
 }
 
 .input{
-    padding: 3px;
+    padding: 5px;
     border: 1px solid black;
     border-radius: 3px;
+    font-size: 20px;
 }
 .input:focus{
     outline-color: var(--primary);
 }
 
-.login{
+.form-style{
     padding: 10px;
     background-color: white;
     border-radius: 5px;

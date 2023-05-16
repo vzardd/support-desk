@@ -1,7 +1,9 @@
 import customerSupportGirl from "../../../assets/customerSupportGirl.png";
 import {OutlinedButton} from "../../../components/Buttons";
+import { useNavigate } from "react-router-dom";
 
 export default function RaiseTicketSection() {
+    const navigate = useNavigate();
     return (
         <div className="section raise-ticket" id="raise-a-ticket">
             <h3 className="sub white-title">Welcome to</h3>
@@ -11,7 +13,7 @@ export default function RaiseTicketSection() {
                 <em>
                     Raise a ticket <span className="arrow">↗</span>
                 </em>
-            }/>
+            } onClick = {() => {navigate("/raise-ticket");}}/>
             <img src={customerSupportGirl} className="support-girl" alt="customer support girl"></img>
         </div>
     );

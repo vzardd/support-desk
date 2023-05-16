@@ -10,7 +10,8 @@ export function OutlinedButton(
         fontFamily = "Monsterrat",
         padding = "3px 15px 3px 15px",
         className,
-        text
+        text,
+        onClick
     }
 ) {
 
@@ -27,7 +28,7 @@ export function OutlinedButton(
                     fontFamily: fontFamily,
                     padding: padding
                 }
-            } className = {className}>
+            } className = {className} onClick = {onClick}>
                 {text}
         </button>
     );
@@ -43,7 +44,8 @@ export function BasicButton(
         color = "white",
         fontSize = "18px",
         fontFamily = "Monsterrat",
-        padding = "3px 15px 3px 15px",
+        padding = "5px 15px 5px 15px",
+        marginTop = "10px",
         className,
         text
     }
@@ -61,7 +63,8 @@ export function BasicButton(
                     fontSize: fontSize,
                     fontFamily: fontFamily,
                     padding: padding,
-                    cursor:"pointer"
+                    cursor:"pointer",
+                    marginTop: marginTop
                 }
             } className = {className}>
                 {text}

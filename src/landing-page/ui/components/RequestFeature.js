@@ -1,7 +1,9 @@
 import idea from "../../../assets/idea.png";
 import {OutlinedButton} from "../../../components/Buttons";
+import { useNavigate } from "react-router-dom";
 
 export default function RequestFeature () {
+    const navigate = useNavigate();
     return (
         <div className="section request-feature" id="request-feature">
             <img src={idea} className="request-feature-image" alt="idea"></img>
@@ -11,7 +13,7 @@ export default function RequestFeature () {
                 <em>
                     Request Feature <span className="arrow">↗</span>
                 </em>
-            }/>
+            } onClick = {() => {navigate("/request-feature");}}/>
             <div className="blur-gradient"></div>
         </div>
     );
