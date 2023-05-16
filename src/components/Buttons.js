@@ -47,7 +47,8 @@ export function BasicButton(
         padding = "5px 15px 5px 15px",
         marginTop = "10px",
         className,
-        text
+        text,
+        onClick
     }
 ) {
 
@@ -66,7 +67,7 @@ export function BasicButton(
                     cursor:"pointer",
                     marginTop: marginTop
                 }
-            } className = {className}>
+            } className = {className} onClick = {onClick}>
                 {text}
         </button>
     );

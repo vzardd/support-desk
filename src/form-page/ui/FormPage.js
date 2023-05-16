@@ -4,6 +4,10 @@ import './formpage.css';
 
 export default function FormPage({type}) {
 
+    const onSubmit = (name, email, subject, msg, type) => {
+        console.log(name, email, subject, msg, type);
+    }
+
     if(type==="login"){
         return (
             <div className="form-page-section">
@@ -22,7 +26,7 @@ export default function FormPage({type}) {
         return (
             <div className="form-page-section">
                 <h1 className='title'>Raise ticket</h1>
-                <Form width="min(80vw,80vh)"/>
+                <Form width="min(80vw,80vh)" onSubmit={ (name, email, subject, msg) => { onSubmit(name, email, subject, msg, "raise-ticket")}}/>
             </div>
         );
     }
@@ -30,7 +34,7 @@ export default function FormPage({type}) {
         return (
             <div className="form-page-section">
                 <h1 className='title'>Request feature</h1>
-                <Form width="min(80vw,80vh)"/>
+                <Form width="min(80vw,80vh)" onSubmit={ (name, email, subject, msg) => { onSubmit(name, email, subject, msg, "request-feature")}}/>
             </div>
         );
     }

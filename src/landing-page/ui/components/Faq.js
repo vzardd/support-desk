@@ -32,6 +32,8 @@ export default function Faq () {
         }
     ]);
 
+    const [isLoading, setIsLoading] = useState(false);
+
     const handleQuestionClick = (index) => {
         let temp = [];
         questions.forEach(
@@ -55,6 +57,40 @@ export default function Faq () {
         setQuestions(temp);
     }
 
+    const onSubmit = (name, email, subject, msg, type) => {
+
+        setIsLoading(true);
+
+        const url = "http://localhost:8000/userform";
+        const form = {
+            "name": name,
+            "email": email,
+            "subject":subject,
+            "message": msg,
+            "type": type
+        }
+
+        fetch(url, {method: "POST", headers: {"Content-Type":"application/json"}, body: JSON.stringify(form)})
+        .then( res => {
+            if(!res.ok){
+                throw Error("Mission failed");
+            }
+            return res.json();
+        })
+        .then(
+            data => {
+                setIsLoading(false);
+                console.log(data);
+            }
+        )
+        .catch(
+            err => {
+                setIsLoading(false);
+                console.log(err.message);
+            }
+        )
+    }
+
     return (
         <div className="section faq" id="faq">
             <div className="questions">
@@ -69,7 +105,7 @@ export default function Faq () {
             </div>
             <div className="feedback-section">
                 <h1 className="white-title feedback-title">Feedback</h1>
-                <Form width="min(80%,80vw)"/>
+                <Form width="min(80%,80vw)" onSubmit={ (name, email, subject, msg) => { onSubmit(name, email, subject, msg, "feedback")}} isLoading={isLoading}/>
             </div>
         </div>
     );
