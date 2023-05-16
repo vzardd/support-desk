@@ -3,7 +3,7 @@ import './formpage.css';
 
 export default function FormPage() {
     return (
-        <div className="section">
+        <div className="form-page-section">
             <h1 className='title'>Agent Login</h1>
             <form className='login'>
                 <label htmlFor="email" className='label'>Email</label>
