@@ -1,11 +1,44 @@
+import { useState } from 'react';
 import { BasicButton } from '../../components/Buttons';
 import Form from '../../components/Form';
 import './formpage.css';
 
 export default function FormPage({type}) {
 
+    const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState(null);
+
     const onSubmit = (name, email, subject, msg, type) => {
-        console.log(name, email, subject, msg, type);
+        setIsLoading(true);
+
+        const url = "http://localhost:8000/userform";
+        const form = {
+            "name": name,
+            "email": email,
+            "subject":subject,
+            "message": msg,
+            "type": type
+        }
+
+        fetch(url, {method: "POST", headers: {"Content-Type":"application/json"}, body: JSON.stringify(form)})
+        .then( res => {
+            if(!res.ok){
+                throw Error("Mission failed");
+            }
+            return res.json();
+        })
+        .then(
+            data => {
+                setError(null);
+                setIsLoading(false);
+            }
+        )
+        .catch(
+            err => {
+                setIsLoading(false);
+                setError(err.message);
+            }
+        )
     }
 
     if(type==="login"){
@@ -26,7 +59,7 @@ export default function FormPage({type}) {
         return (
             <div className="form-page-section">
                 <h1 className='title'>Raise ticket</h1>
-                <Form width="min(80vw,80vh)" onSubmit={ (name, email, subject, msg) => { onSubmit(name, email, subject, msg, "raise-ticket")}}/>
+                <Form width="min(80vw,80vh)" onSubmit={ (name, email, subject, msg) => { onSubmit(name, email, subject, msg, "raise-ticket")}} isLoading={isLoading} error={error}/>
             </div>
         );
     }
@@ -34,7 +67,7 @@ export default function FormPage({type}) {
         return (
             <div className="form-page-section">
                 <h1 className='title'>Request feature</h1>
-                <Form width="min(80vw,80vh)" onSubmit={ (name, email, subject, msg) => { onSubmit(name, email, subject, msg, "request-feature")}}/>
+                <Form width="min(80vw,80vh)" onSubmit={ (name, email, subject, msg) => { onSubmit(name, email, subject, msg, "request-feature")}} isLoading={isLoading} error={error}/>
             </div>
         );
     }

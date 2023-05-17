@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { BasicButton } from "./Buttons";
 
 export default function Form(
@@ -23,7 +23,8 @@ export default function Form(
             outlineColor: themeColor
         },
         onSubmit,
-        isLoading
+        isLoading,
+        error
     }
 ) {
 
@@ -31,6 +32,7 @@ export default function Form(
     const [email, setEmail] = useState("");
     const [subject, setSubject] = useState("");
     const [message, setMessage] = useState("");
+    const formRef = useRef();
 
     let buttonName = "Submit";
     if(isLoading===true){
@@ -47,8 +49,16 @@ export default function Form(
         }
     }
 
+    useEffect(
+        () => {
+            if(error === null && isLoading === false){
+                formRef.current.reset();
+            }
+        }, [error, isLoading]
+    )
+
     return (
-        <form style={{
+        <form ref = {formRef} style={{
             backgroundColor:backgroundColor,
             boxShadow:boxShadow,
             borderRadius:borderRadius,
@@ -57,7 +67,7 @@ export default function Form(
             padding:padding,
             width:width,
             gap:"5px"
-        }}>
+        }} onSubmit = { e => {validate(e)}} onReset={e => {setName(""); setEmail(""); setSubject(""); setMessage("");}}>
             <label htmlFor="name" style={labelStyle}>Full Name</label>
             <input type="text" style={inputStyle} id="name" placeholder="James Bond" value = {name} onChange = { e => setName(e.target.value)} required></input>
             <label htmlFor="email" style={labelStyle}>Email</label>
@@ -66,7 +76,8 @@ export default function Form(
             <input type="text" style={inputStyle} id="sub" placeholder="Title" value = {subject} onChange = { e => setSubject(e.target.value)} required></input>
             <label htmlFor="message" style={labelStyle}>Message</label>
             <textarea style={inputStyle} id="message" rows="4" cols="50" placeholder="Type your message here..." value = {message} onChange = { e => setMessage(e.target.value)} required/>
-            <BasicButton backgroundColor={themeColor} borderColor={themeColor} text={buttonName} onClick = { e => {validate(e)}}/>
+            {error && <span style = { {color: "red", fontFamily:"Monsterrat", fontSize:"12px", fontWeight:"bold"}}>{error}</span>}
+            <BasicButton type="submit" backgroundColor={themeColor} borderColor={themeColor} text={buttonName} buttonDisabled = {isLoading}/>
         </form>
     );
 }

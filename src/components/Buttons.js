@@ -48,7 +48,8 @@ export function BasicButton(
         marginTop = "10px",
         className,
         text,
-        onClick
+        onClick,
+        buttomDisabled
     }
 ) {
 
@@ -67,7 +68,7 @@ export function BasicButton(
                     cursor:"pointer",
                     marginTop: marginTop
                 }
-            } className = {className} onClick = {onClick}>
+            } className = {className} disabled = {buttomDisabled} onClick = {onClick}>
                 {text}
         </button>
     );

@@ -33,6 +33,7 @@ export default function Faq () {
     ]);
 
     const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState(null);
 
     const handleQuestionClick = (index) => {
         let temp = [];
@@ -73,20 +74,20 @@ export default function Faq () {
         fetch(url, {method: "POST", headers: {"Content-Type":"application/json"}, body: JSON.stringify(form)})
         .then( res => {
             if(!res.ok){
-                throw Error("Mission failed");
+                throw Error("Something went wrong!");
             }
             return res.json();
         })
         .then(
             data => {
+                setError(null);
                 setIsLoading(false);
-                console.log(data);
             }
         )
         .catch(
             err => {
                 setIsLoading(false);
-                console.log(err.message);
+                setError(err.message);
             }
         )
     }
@@ -105,7 +106,7 @@ export default function Faq () {
             </div>
             <div className="feedback-section">
                 <h1 className="white-title feedback-title">Feedback</h1>
-                <Form width="min(80%,80vw)" onSubmit={ (name, email, subject, msg) => { onSubmit(name, email, subject, msg, "feedback")}} isLoading={isLoading}/>
+                <Form width="min(80%,80vw)" onSubmit={ (name, email, subject, msg) => { onSubmit(name, email, subject, msg, "feedback")}} isLoading={isLoading} error={error}/>
             </div>
         </div>
     );
