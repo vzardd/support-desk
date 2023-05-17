@@ -17,7 +17,8 @@ export default function FormPage({type}) {
             "email": email,
             "subject":subject,
             "message": msg,
-            "type": type
+            "type": type,
+            "status":"open"
         }
 
         fetch(url, {method: "POST", headers: {"Content-Type":"application/json"}, body: JSON.stringify(form)})

@@ -1,0 +1,96 @@
+.ticket{
+    padding: 10px;
+    background-color: var(--light-grey);
+    width: 90%;
+    border: 1px solid grey;
+    border-radius: 3px;
+    box-shadow: 1px 1px 5px grey;
+}
+
+.dashboard-section{
+    min-height: 100vh;
+    width: 100vw;
+    background-color: var(--soft-white);
+    display: flex;
+    flex-direction: column;
+    gap: min(5vw,5vh);
+}
+
+.dashboard-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100vw;
+}
+
+.dash-title{
+    padding: 20px;
+    font-family: "Monsterrat";
+    font-weight: bold;
+}
+
+.logout{
+    font-family: Monsterrat;
+    font-weight: 700;
+    padding: 10px;
+    cursor: pointer;
+    position: relative;
+}
+
+.logout::after{
+    content:"";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background-color: red;
+    bottom: 5px;
+    left: 7%;
+    transition: width .4s ease-in-out;
+}
+
+.logout:hover::after{
+    width: 86%;
+}
+
+.ticket-title, .ticket-message{
+    font-family: Monsterrat;
+    padding: 5px;
+}
+
+.status-icon{
+    height: 12px;
+    width: 12px;
+    vertical-align: middle;
+    margin-inline: 10px;
+    display: inline-block;
+    border-radius: 50%;
+    position: relative;
+    bottom: 1px;
+}
+
+.status-open{
+    background-color: green;
+}
+
+.status-closed{
+    background-color: red;
+}
+
+.status-hold{
+    background-color: yellow;
+}
+
+.dashboard-body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tickets-container, .requests-container, .feedback-container{
+    width: 100px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: center;
+    flex-grow: 1;
+}

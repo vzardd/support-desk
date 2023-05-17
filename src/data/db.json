@@ -6,7 +6,8 @@
       "email": "abc@gmail.com",
       "subject": "Test form",
       "message": "Hasta la vista",
-      "type": "feedback"
+      "type": "feedback",
+      "status":"open"
     }
   ]
 }

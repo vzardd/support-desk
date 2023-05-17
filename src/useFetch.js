@@ -8,10 +8,11 @@ const useFetch = (url, method = "GET", body = null) => {
 
     useEffect( () => {
         setIsLoading(true);
-        const abortController = AbortController();
-        fetch(url, {signal : abortController.signal, method: method, headers: {"Content-Type":"application/json"}, body: body})
+        // const abortController = new AbortController();
+        fetch(url, {method: method, headers: {"Content-Type":"application/json"}, body: body})
         .then(
             res => {
+                console.log("1",res);
                 if(!res.ok){
                     throw Error("Could not fetch data");
                 }
@@ -20,6 +21,7 @@ const useFetch = (url, method = "GET", body = null) => {
         )
         .then(
             data => {
+                console.log("2",data);
                 setData(data);
                 setIsLoading(false);
                 setError(null);
@@ -27,7 +29,9 @@ const useFetch = (url, method = "GET", body = null) => {
         )
         .catch(
             e => {
+                console.log("3",e);
                 if(e.name !== "AbortError"){
+                    console.log("4 Abort");
                     setError(e.message);
                     setIsLoading(false);
                     setData(null);
@@ -35,9 +39,9 @@ const useFetch = (url, method = "GET", body = null) => {
                 }
             }
         );
-        return (
-            abortController.abort()
-        );
+        // return (
+        //     abortController.abort()
+        // );
     }, [url]);
 
     return {data, isLoading, error};
