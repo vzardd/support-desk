@@ -58,14 +58,14 @@
 }
 
 .status-icon{
-    height: 12px;
-    width: 12px;
+    height: 8px;
+    width: 8px;
     vertical-align: middle;
-    margin-inline: 10px;
+    margin-inline: 5px;
     display: inline-block;
     border-radius: 50%;
     position: relative;
-    bottom: 1px;
+    border: 1px solid #bbbbbb;
 }
 
 .status-open{
@@ -77,7 +77,7 @@
 }
 
 .status-hold{
-    background-color: yellow;
+    background-color: #ffd600;
 }
 
 .dashboard-body{
@@ -93,4 +93,57 @@
     gap: 5px;
     align-items: center;
     flex-grow: 1;
+}
+
+.ticket-row{
+    display: flex;
+    justify-content: space-between;
+}
+
+li{
+    list-style: none;
+    cursor: pointer;
+    padding: 3px;
+}
+
+li:hover{
+    background-color: #e0e0e0;
+}
+
+.selected{
+    width: fit-content;
+    background-color: var(--light-grey);
+    border: 1px solid grey;
+    border-radius: 5px;
+    padding: 2px;
+    display: flex;
+    align-items: center;
+    box-shadow: 1px 1px 2px grey;
+    cursor: pointer;
+}
+
+.status-text{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 14px;
+}
+
+.selected > .open-arrow{
+    height: 10px;
+    width: 10px;
+    margin-inline: 5px;
+}
+
+.custom-select{
+    position: relative;
+    user-select:none;
+    outline:none;
+}
+
+.status-list{
+    padding: 0;
+    background-color: var(--light-grey);
+    box-shadow: 0px 0px 2px black;
+    border-radius: 3px;
+    position: absolute;
+    width: 100%;
 }
