@@ -1,10 +1,11 @@
-import { useEffect } from "react";
 import "./dashboard.css";
 import useFetch from "../../useFetch";
 import CustomSelect from "../../components/CustomSelect";
+import { useNavigate } from "react-router-dom";
 
 export default function Dashboard(){
-    const {data, isLoading, error, fetchData} = useFetch("http://localhost:8000/userform");
+    const {data, fetchData} = useFetch("http://localhost:8000/userform");
+    const navigate = useNavigate();
     const tickets = data?.filter(
         (t) => {
             return t.type==="raise-ticket";
@@ -44,7 +45,7 @@ export default function Dashboard(){
         <div className="dashboard-section">
             <div className="dashboard-header">
                 <h1 className="dash-title">Dashboard</h1>
-                <span className="logout">LOG OUT</span>
+                <span className="logout" onClick = { () => navigate("/login")} >LOG OUT</span>
             </div>
             { data && <div className="dashboard-body">
                 <div className="tickets-container">
