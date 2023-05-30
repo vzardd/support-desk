@@ -4,8 +4,7 @@ import useFetch from "../../useFetch";
 import CustomSelect from "../../components/CustomSelect";
 
 export default function Dashboard(){
-    const {data, isLoading, error} = useFetch("http://localhost:8000/userform");
-    console.log(data, isLoading, error)
+    const {data, isLoading, error, fetchData} = useFetch("http://localhost:8000/userform");
     const tickets = data?.filter(
         (t) => {
             return t.type==="raise-ticket";
@@ -35,7 +34,9 @@ export default function Dashboard(){
 
         const url = `http://localhost:8000/userform/${ticket.id}`;
 
-        fetch(url, {method:"PUT", headers:{"Content-Type": "application/json"},body: d});
+        fetch(url, {method:"PUT", headers:{"Content-Type": "application/json"},body: d}).then(
+            fetchData()
+        )
 
     }
 
@@ -48,18 +49,21 @@ export default function Dashboard(){
             { data && <div className="dashboard-body">
                 <div className="tickets-container">
                     <h2 className="black-title">Tickets</h2>
+                    { (tickets===null || tickets.length === 0) && <p className="no-data">No data available</p>}
                     {
                         tickets.map( (ticket) =>  <Ticket key={`${ticket.type}-${ticket.id}`} ticket={ticket} onSelect={ (status, id) => onSelect(ticket, status, id)}/>)
                     }
                 </div>
                 <div className="requests-container">
                     <h2 className="black-title">Requests</h2>
+                    { (requests===null || requests.length === 0) && <p className="no-data">No data available</p>}
                     {
                         requests.map( (ticket) =>  <Ticket key={`${ticket.type}-${ticket.id}`} ticket={ticket} onSelect={ (status, id) => onSelect(ticket, status, id)}/>)
                     }
                 </div>
                 <div className="feedback-container">
                     <h2 className="black-title">Feedbacks</h2>
+                    { (feedbacks===null || feedbacks.length === 0) && <p className="no-data">No data available</p>}
                     {
                         feedbacks.map( (ticket) =>  <Ticket key={`${ticket.type}-${ticket.id}`} ticket={ticket} onSelect={ (status, id) => onSelect(ticket, status, id)}/>)
                     }

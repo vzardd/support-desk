@@ -6,8 +6,17 @@
       "subject": "Test form",
       "message": "Hasta la vista",
       "type": "feedback",
-      "status": "open",
+      "status": "closed",
       "id": 1
+    },
+    {
+      "name": "Test Name 2",
+      "email": "abc@gmail.com",
+      "subject": "Test form",
+      "message": "Hasta la vista",
+      "type": "raise-ticket",
+      "status": "open",
+      "id": 2
     }
   ]
 }
